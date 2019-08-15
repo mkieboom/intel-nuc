@@ -19,8 +19,8 @@
   - name: Add virtualbox repo
     yum_repository:
       name: virtualbox
-      description: EPEL YUM repo
-      file: external_repos
+      description: Oracle Virtualbox repo
+      file: virtualbox
       baseurl: http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch
       gpgkey: https://www.virtualbox.org/download/oracle_vbox.asc
       gpgcheck: yes
