@@ -9,3 +9,9 @@
   hosts: intel-nuc-all
   roles:
     - thirdparty-docker
+
+## Install Virtualbox
+- name: Install Virtualbox
+  hosts: intel-nuc-all
+  roles:
+    - thirdparty-virtualbox
