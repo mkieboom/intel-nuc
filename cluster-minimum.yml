@@ -1,0 +1,11 @@
+## Intel NUC installation
+- name: Apply Kubernetes pre-requisite configuration to all nodes
+  hosts: intel-nuc-all
+  roles:
+    - common-prereq-software
+
+## Install Docker
+- name: Install Docker
+  hosts: intel-nuc-all
+  roles:
+    - thirdparty-docker

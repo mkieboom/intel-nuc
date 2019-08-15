@@ -1,0 +1,7 @@
+# Cluster Node definition
+
+[intelnuc]
+127.0.0.1 ansible_user=root ansible_become=yes ansible_become_method=sudo
+
+[intel-nuc-all:children]
+intelnuc

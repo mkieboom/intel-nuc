@@ -1,0 +1,52 @@
+---
+# Install Intel NUC basic software packages
+  
+  # # Disable selinux
+  # - name: Set selinux config to disabled
+  #   selinux: state=disabled policy=targeted
+
+  # - name: Selinux to permissive now
+  #   command: setenforce permissive
+  #   register: command_result
+  #   failed_when: "command_result is failed and 'setenforce: SELinux is disabled' in command_result.msg"
+  #   ignore_errors: yes
+
+  # # Disable swap
+  # - name: Remove swapfile from /etc/fstab
+  #   mount:
+  #     name: swap
+  #     fstype: swap
+  #     state: absent
+
+  # - name: Disable swap
+  #   command: swapoff -a
+  #   when: ansible_swaptotal_mb > 0
+
+  # Install basic tools
+  - name: Install basic tools
+    package: name={{item}} state=present
+    with_items:
+      - epel-release
+      - net-tools
+      - wget
+      - xrdp
+
+  - name: install the 'GNOME Desktop' package group
+    package:
+      name: "@GNOME Desktop"
+      state: present
+
+# Install Desktop Environment
+#systemctl enable gdm.service
+#systemctl set-default graphical.target
+
+
+#yum -y install xrdp tigervnc-server
+
+#systemctl start xrdp
+#systemctl enable xrdp
+
+# Allow RDP in SELinux
+#chcon --type=bin_t /usr/sbin/xrdp
+#chcon --type=bin_t /usr/sbin/xrdp-sesman
+
