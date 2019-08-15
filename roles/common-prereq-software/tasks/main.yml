@@ -30,9 +30,6 @@
       src: /lib/systemd/system/graphical.target
       dest: /etc/systemd/system/default.target
       state: link
-#unlink /etc/systemd/system/default.target
-#ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
-#reboot
 
 #  - name: install the 'GNOME Desktop' package group
 #    yum:

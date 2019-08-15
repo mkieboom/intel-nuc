@@ -15,6 +15,7 @@
       - glibc-headers
       - glibc-devel
       - fontforge
+      - kernel-devel-3.10.0-957.12.2.el7
 
   # Install virtualbox
   - name: Add virtualbox repo
@@ -34,7 +35,7 @@
       - VirtualBox-{{virtualbox_version}}*
 
   - name: Run vboxconfig
-    shell: /sbin/vboxconfig
+    shell: sudo /sbin/vboxconfig
     
   - name: Make user 'root' part of the 'vboxusers' group
     user:
