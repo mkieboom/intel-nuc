@@ -14,7 +14,7 @@
       - binutils
       - glibc-headers
       - glibc-devel
-      - font-forge
+      - fontforge
 
   # Install virtualbox
   - name: Add virtualbox repo
