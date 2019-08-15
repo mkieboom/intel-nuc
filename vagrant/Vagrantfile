@@ -1,0 +1,38 @@
+# https://manski.net/2016/09/vagrant-multi-machine-tutorial/#starting-and-interacting-with-your-first-vm
+BOX_IMAGE = "centos/7"
+
+
+$script = <<EOF
+# Install git ansible
+yum install -y git ansible
+
+# Git clone
+sudo su -
+cd ~/
+sudo git clone https://github.com/mkieboom/intel-nuc
+cd intel-nuc
+
+# Launch ansible
+ansible-playbook -i myhosts/1node_cluster cluster-minimum.yml --connection=local
+
+EOF
+
+
+Vagrant.configure("2") do |config|
+  config.vm.box = BOX_IMAGE
+  config.vm.hostname = "intel-nuc"
+  config.vm.network "private_network", ip: "192.168.168.168"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+  end
+
+  #ssh_pub_key = File.readlines("~/.ssh/id_rsa.pub").first.strip
+  config.vm.provision 'shell', inline: 'mkdir -p /root/.ssh'
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "/home/vagrant/.ssh/me.pub"
+  config.vm.provision 'shell', inline: "cat /home/vagrant/.ssh/me.pub >> /home/vagrant/.ssh/authorized_keys", privileged: false
+  config.vm.provision 'shell', inline: "sudo cp /home/vagrant/.ssh/me.pub /root/.ssh/authorized_keys"
+
+  # Launch the script
+  config.vm.provision "shell", inline: $script
+end

@@ -32,7 +32,7 @@
       - xrdp
 
   - name: install the 'GNOME Desktop' package group
-    package:
+    yum:
       name: "@GNOME Desktop"
       state: present
 
