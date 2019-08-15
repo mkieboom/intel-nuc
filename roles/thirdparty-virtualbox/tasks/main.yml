@@ -6,6 +6,11 @@
   #     - device-mapper-persistent-data
   #     - lvm2
 
+  - name: Add virtualbox gpgkey
+    rpm_key:
+      state: present
+      key: https://www.virtualbox.org/download/oracle_vbox.asc
+
   - name: Add virtualbox repository
     shell: yum-config-manager --add-repo {{virtualbox_repo_url}}
 
