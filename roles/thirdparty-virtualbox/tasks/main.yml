@@ -1,21 +1,22 @@
 ---
-  # - name: Install virtualbox dependencies
-  #   package: name={{item}} state=present
-  #   with_items:
-  #     - 
+  # Install basic tools
+  - name: Install virtualbox dependencies
+    package: name={{item}} state=present
+    with_items:
+      - gcc
+      - dkms
+      - make
+      - qt
+      - libgomp
+      - patch
+      - kernel-headers
+      - kernel-devel
+      - binutils
+      - glibc-headers
+      - glibc-devel
+      - font-forge
 
-  # VirtualBox dependencies ??
-  # yum -y install gcc dkms make qt libgomp patch 
-  # yum -y install kernel-headers kernel-devel binutils glibc-headers glibc-devel font-forge
-
-#  - name: Add virtualbox gpgkey
-#    rpm_key:
-#      state: present
-#      key: https://www.virtualbox.org/download/oracle_vbox.asc
-
-#  - name: Add virtualbox repository
-#    shell: yum-config-manager --add-repo {{virtualbox_repo_url}}
-
+  # Install virtualbox
   - name: Add virtualbox repo
     yum_repository:
       name: virtualbox
@@ -24,20 +25,9 @@
       baseurl: http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch
       gpgkey: https://www.virtualbox.org/download/oracle_vbox.asc
       gpgcheck: yes
-      repo_gpgcheck: yes
+      repo_gpgcheck: no
       enabled: yes
 
-
-#[virtualbox]
-#name=Oracle Linux / RHEL / CentOS-$releasever / $basearch - VirtualBox
-#baseurl=http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch
-#enabled=1
-#gpgcheck=1
-#repo_gpgcheck=1
-#gpgkey=https://www.virtualbox.org/download/oracle_vbox.asc
-
-
-  # Install virtualbox
   - name: Install Virtualbox
     package: name={{item}} state=present
     with_items:
