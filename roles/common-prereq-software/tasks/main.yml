@@ -1,27 +1,6 @@
 ---
 # Install Intel NUC basic software packages
   
-  # # Disable selinux
-  # - name: Set selinux config to disabled
-  #   selinux: state=disabled policy=targeted
-
-  # - name: Selinux to permissive now
-  #   command: setenforce permissive
-  #   register: command_result
-  #   failed_when: "command_result is failed and 'setenforce: SELinux is disabled' in command_result.msg"
-  #   ignore_errors: yes
-
-  # # Disable swap
-  # - name: Remove swapfile from /etc/fstab
-  #   mount:
-  #     name: swap
-  #     fstype: swap
-  #     state: absent
-
-  # - name: Disable swap
-  #   command: swapoff -a
-  #   when: ansible_swaptotal_mb > 0
-
   # Install basic tools
   - name: Install basic tools
     package: name={{item}} state=present
@@ -29,12 +8,36 @@
       - epel-release
       - net-tools
       - wget
-      - xrdp
+      - yum-utils
 
-  - name: install the 'GNOME Desktop' package group
-    yum:
-      name: "@^GNOME Desktop"
-      state: present
+  # Install a Minimal Desktop environment
+  - name: Install basic tools
+    yum: name={{item}} state=present
+    with_items:
+      - "@^X Window System"
+      - gnome-classic-session
+      - gnome-terminal
+      - nautilus-open-terminal
+      - control-center
+      - liberation-mono-fonts
+
+  - name: Desktop environment - Create a symbolic link
+    file:
+      src: /etc/systemd/system/default.target
+      dest: /lib/systemd/system/graphical.target
+      state: link
+#unlink /etc/systemd/system/default.target
+#ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
+#reboot
+
+#  - name: install the 'GNOME Desktop' package group
+#    yum:
+#      name: "@^GNOME Desktop"
+#      state: present
+
+  # Install xrdp for remote access
+  - name: Install basic tools
+    package: name=xrdp state=present
 
   # Launch xrdp service for remote access
   - name: Start the xrdp service
@@ -43,16 +46,3 @@
       state: started
       enabled: yes
       daemon_reload: yes
-
-
-# Install Desktop Environment
-#systemctl enable gdm.service
-#systemctl set-default graphical.target
-
-
-#yum -y install xrdp tigervnc-server
-
-# Allow RDP in SELinux
-#chcon --type=bin_t /usr/sbin/xrdp
-#chcon --type=bin_t /usr/sbin/xrdp-sesman
-
