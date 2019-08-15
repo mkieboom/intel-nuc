@@ -1,0 +1,22 @@
+---
+  # - name: Install virtualbox dependencies
+  #   package: name={{item}} state=present
+  #   with_items:
+  #     - yum-utils
+  #     - device-mapper-persistent-data
+  #     - lvm2
+
+  - name: Add virtualbox repository
+    shell: yum-config-manager --add-repo {{virtualbox_repo_url}}
+
+  # Install virtualbox
+  - name: Install Virtualbox
+    package: name={{item}} state=present
+    with_items:
+      - Virtualbox-{{virtualbox_version}}*
+
+  - name: Make user 'root' part of the 'vboxusers' group
+    user:
+      name: root
+      groups: vboxusers
+      append: yes

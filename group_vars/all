@@ -1,28 +1,8 @@
 
-# Kubernetes pod network cidr
-pod_network_cidr: 10.244.0.0/16
-
-# Install a specific Kubernetes version. Leave empty for latest K8S version.
-# Example:
-# kubernetes_version: 1.13.0
-kubernetes_version:
-
-# Allow running pods on master (yes/no=default)
-allow_pods_on_master: 'no'
-
-# Deploy demo environment settings, not for production environments! (yes/no=default)
-demo_environment: 'no'
-
-# Flannel version and url
-flannel_url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-
-# Dashboard
-# Dashboard Service Type can be: NodePort/ClusterIP/ExternalName/LoadBalancer
-dashboard_service_type: NodePort
-dashboard_service_port: 30001
-dashboard_url: https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
-dashboard_yaml: kubernetes-dashboard.yaml
-
 # Docker
 docker_repo_url: https://download.docker.com/linux/centos/docker-ce.repo
 docker_version: 
+
+# Virtualbox
+virtualbox_repo_url: http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo
+virtualbox_version: 6.0
