@@ -30,6 +30,6 @@
 
   # Install vagrant
   - name: Install vagrant
-    package: name={{item}} state=present
+    yum: name={{item}} state=present
     with_items:
       - {{vagrant_rpm_url}}
