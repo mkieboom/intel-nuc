@@ -33,6 +33,9 @@
     with_items:
       - VirtualBox-{{virtualbox_version}}*
 
+  - name: Run vboxconfig
+    shell: /sbin/vboxconfig
+    
   - name: Make user 'root' part of the 'vboxusers' group
     user:
       name: root
