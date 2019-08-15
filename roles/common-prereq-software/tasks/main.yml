@@ -33,7 +33,7 @@
 
   - name: install the 'GNOME Desktop' package group
     yum:
-      name: "@GNOME Desktop"
+      name: "@^GNOME Desktop"
       state: present
 
 # Install Desktop Environment
