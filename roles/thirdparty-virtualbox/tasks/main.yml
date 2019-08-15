@@ -2,9 +2,11 @@
   # - name: Install virtualbox dependencies
   #   package: name={{item}} state=present
   #   with_items:
-  #     - yum-utils
-  #     - device-mapper-persistent-data
-  #     - lvm2
+  #     - 
+
+  # VirtualBox dependencies ??
+  # yum -y install gcc dkms make qt libgomp patch 
+  # yum -y install kernel-headers kernel-devel binutils glibc-headers glibc-devel font-forge
 
   - name: Add virtualbox gpgkey
     rpm_key:
@@ -25,3 +27,9 @@
       name: root
       groups: vboxusers
       append: yes
+
+  # Install vagrant
+  - name: Install vagrant
+    package: name={{item}} state=present
+    with_items:
+      - {{vagrant_rpm_url}}
