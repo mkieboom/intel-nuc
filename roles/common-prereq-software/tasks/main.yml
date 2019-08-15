@@ -11,10 +11,14 @@
       - yum-utils
 
   # Install a Minimal Desktop environment
-  - name: Install basic tools
+  - name: Install minimal desktop
+    yum:
+      name: "@X Window System"
+      state: present
+
+  - name: Install minimal desktop prerequisites
     yum: name={{item}} state=present
     with_items:
-      - "@^X Window System"
       - gnome-classic-session
       - gnome-terminal
       - nautilus-open-terminal
@@ -23,8 +27,8 @@
 
   - name: Desktop environment - Create a symbolic link
     file:
-      src: /etc/systemd/system/default.target
-      dest: /lib/systemd/system/graphical.target
+      src: /lib/systemd/system/graphical.target
+      dest: /etc/systemd/system/default.target
       state: link
 #unlink /etc/systemd/system/default.target
 #ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
@@ -36,7 +40,7 @@
 #      state: present
 
   # Install xrdp for remote access
-  - name: Install basic tools
+  - name: Install xrdp
     package: name=xrdp state=present
 
   # Launch xrdp service for remote access
