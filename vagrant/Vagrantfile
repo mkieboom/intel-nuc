@@ -1,38 +1,50 @@
-# https://manski.net/2016/09/vagrant-multi-machine-tutorial/#starting-and-interacting-with-your-first-vm
 BOX_IMAGE = "centos/7"
+NODE_NAME = "intelnuc"
+NODE_IP = "192.168.168.168"
+NODE_MEMORY = 4096
+NODE_CPU = 2
+
+GIT_ANSIBLE_PROJECT = "https://github.com/mkieboom/intel-nuc"
+ANSIBLE_PLAYBOOK = "intel-nuc/cluster-minimum.yml"
 
 
 $script = <<EOF
-# Install git ansible
-yum install -y git ansible
+# Run yum update
+#sudo yum update -y
+
+# Install git
+sudo yum install -y git
 
 # Git clone
-sudo su -
-cd ~/
-sudo git clone https://github.com/mkieboom/intel-nuc
-cd intel-nuc
-
-# Launch ansible
-ansible-playbook -i myhosts/1node_cluster cluster-minimum.yml --connection=local
+sudo git clone #{GIT_ANSIBLE_PROJECT}
 
 EOF
 
 
 Vagrant.configure("2") do |config|
   config.vm.box = BOX_IMAGE
-  config.vm.hostname = "intel-nuc"
-  config.vm.network "private_network", ip: "192.168.168.168"
-
+  config.vm.hostname = NODE_NAME
+  config.vm.network "private_network", ip: NODE_IP
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "1024"
+    vb.name = NODE_NAME
+    vb.memory = NODE_MEMORY
+    vb.cpus = NODE_CPU
   end
 
-  #ssh_pub_key = File.readlines("~/.ssh/id_rsa.pub").first.strip
+  # Load my public ssh key
   config.vm.provision 'shell', inline: 'mkdir -p /root/.ssh'
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "/home/vagrant/.ssh/me.pub"
   config.vm.provision 'shell', inline: "cat /home/vagrant/.ssh/me.pub >> /home/vagrant/.ssh/authorized_keys", privileged: false
   config.vm.provision 'shell', inline: "sudo cp /home/vagrant/.ssh/me.pub /root/.ssh/authorized_keys"
 
-  # Launch the script
+  # Launch the shell script
   config.vm.provision "shell", inline: $script
+
+  # Run ansible script
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.provisioning_path = "/home/vagrant/"
+    ansible.playbook = ANSIBLE_PLAYBOOK
+    ansible.become = true
+  end
+
 end
