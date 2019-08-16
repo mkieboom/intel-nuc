@@ -17,7 +17,7 @@
       state: present
 
   - name: Install minimal desktop prerequisites
-    yum: name={{item}} state=present
+    package: name={{item}} state=present
     with_items:
       - gnome-classic-session
       - gnome-terminal
