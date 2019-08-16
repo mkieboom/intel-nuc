@@ -1,6 +1,6 @@
 ## Intel NUC installation
 - name: Apply pre-requisite configuration to all nodes
-  hosts: intel_nuc
+  hosts: all
   roles:
     - common-prereq-software
 
