@@ -1,17 +1,17 @@
 ## Intel NUC installation
 - name: Apply pre-requisite configuration to all nodes
-  hosts: intelnuc
+  hosts: intel_nuc
   roles:
     - common-prereq-software
 
 ## Install Docker
 - name: Install Docker
-  hosts: intelnuc
+  hosts: intel_nuc
   roles:
     - thirdparty-docker
 
 ## Install Virtualbox
 - name: Install Virtualbox
-  hosts: intelnuc
+  hosts: intel_nuc
   roles:
     - thirdparty-virtualbox
