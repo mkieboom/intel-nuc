@@ -35,7 +35,8 @@
       - VirtualBox-{{virtualbox_version}}*
 
   - name: Run vboxconfig
-    shell: sudo /sbin/vboxconfig
+    shell: /sbin/vboxconfig
+    become: true
     
   - name: Make user 'root' part of the 'vboxusers' group
     user:
