@@ -6,12 +6,12 @@
 
 ## Install Docker
 - name: Install Docker
-  hosts: intel_nuc
+  hosts: all
   roles:
     - thirdparty-docker
 
 ## Install Virtualbox
 - name: Install Virtualbox
-  hosts: intel_nuc
+  hosts: all
   roles:
     - thirdparty-virtualbox
