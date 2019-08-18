@@ -15,3 +15,9 @@
   hosts: all
   roles:
     - thirdparty-virtualbox
+
+## Install xrdp
+- name: Install xrdp
+  hosts: all
+  roles:
+    - thirdparty-xrdp
