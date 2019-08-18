@@ -68,6 +68,12 @@
       groups: docker
       append: yes
 
+  - name: Make user 'martijn' part of the 'docker' group
+    user:
+      name: martijn
+      groups: docker
+      append: yes
+
   # - name: Make user '{{mapr_user}}' part of the 'docker' group
   #   user:
   #     name: "{{mapr_user}}"
