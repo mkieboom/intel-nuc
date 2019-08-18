@@ -35,15 +35,3 @@
 #    yum:
 #      name: "@^GNOME Desktop"
 #      state: present
-
-  # Install xrdp for remote access
-  - name: Install xrdp
-    package: name=xrdp state=present
-
-  # Launch xrdp service for remote access
-  - name: Start the xrdp service
-    systemd:
-      name: xrdp
-      state: started
-      enabled: yes
-      daemon_reload: yes

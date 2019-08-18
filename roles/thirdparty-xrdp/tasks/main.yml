@@ -1,0 +1,19 @@
+---
+
+  # Install workaround/fix for broken epel package
+  - name: Remote RPM install with yum
+    yum:
+      name: http://ftp.altlinux.org/pub/distributions/ALTLinux/Sisyphus/x86_64/RPMS.classic//xorg-drv-xrdp-0.9.10-alt2.x86_64.rpm
+      state: present
+
+  # Install xrdp for remote access
+  - name: Install xrdp
+    package: name=xrdp state=present
+
+  # Launch xrdp service for remote access
+  - name: Start the xrdp service
+    systemd:
+      name: xrdp
+      state: started
+      enabled: yes
+      daemon_reload: yes
