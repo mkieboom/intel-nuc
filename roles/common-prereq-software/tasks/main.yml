@@ -1,6 +1,13 @@
 ---
 # Install Intel NUC basic software packages
   
+  # Stop and disable firewalld
+  - name: Stop and disable firewalld
+    systemd:
+      name: firewalld
+      state: stopped
+      enabled: no
+
   # Install basic tools
   - name: Install basic tools
     package: name={{item}} state=present
