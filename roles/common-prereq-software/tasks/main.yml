@@ -27,6 +27,12 @@
   - name: Install fail2ban
     package: name=fail2ban state=present
 
+  - name: Start and disable fail2ban
+    systemd:
+      name: fail2ban
+      state: started
+      enabled: yes
+
   # Install basic tools
   - name: Install basic tools
     package: name={{item}} state=present
