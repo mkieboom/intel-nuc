@@ -22,10 +22,10 @@
     lineinfile: dest=/etc/ssh/sshd_config line='PermitRootLogin no' state=present
 
   - name: Restarting the SSH service
-    service: name=ssh state=restarted
+    service: name=sshd state=restarted
 
   - name: Install fail2ban
-    apt: name=fail2ban state=present
+    package: name=fail2ban state=present
 
   # Install basic tools
   - name: Install basic tools
