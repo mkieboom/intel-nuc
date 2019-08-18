@@ -8,6 +8,25 @@
       state: stopped
       enabled: no
 
+  # Secure ssh
+  - name: Import the sshkey for the new user
+    authorized_key:
+      user: "martijn"
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8c3uZAc1s+uxfaKdmWbAzxhCRSesUCFKWfpdm0o7R8FKS+VUMxk8xAso+/H9jxsPfC+IO/bDeIYYAtrx/yZ7AKsucI22wvg8WEAZdaZpRbK214HRSwkVpfKNihUFi/JE0BiCScjkF1DPmfiApYZLTelJyoU68AJgaWG0i6khq+YwXI2ON5SXpPblvIASqD20LljTLjcus69ZhzoQAgWJ8ixE/eLDXnxwwqwUK8gMnCNzYblemyZ6roV4e24qjw9IE7lpc47yO3MuKoTtVMqwqzdAn1W3yMQIReChEBJYRTaJsQUFQjBr+jELkbSNhJv8nJn7OOO9yd/+jygYZ+NtX"
+
+  - name: Disable using passwords for SSH
+    lineinfile: dest=/etc/ssh/sshd_config line='PasswordAuthentication no' state=present
+
+  - name: Disable SSH login for root
+    lineinfile: dest=/etc/ssh/sshd_config line='PermitRootLogin no' state=present
+
+  - name: Restarting the SSH service
+    service: name=ssh state=restarted
+
+  - name: Install fail2ban
+    apt: name=fail2ban state=present
+
   # Install basic tools
   - name: Install basic tools
     package: name={{item}} state=present
