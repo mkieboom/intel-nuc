@@ -1,5 +1,14 @@
 ---
 # Install Intel NUC basic software packages
+
+  # Install basic tools
+  - name: Install basic tools
+    package: name={{item}} state=present
+    with_items:
+      - epel-release
+      - net-tools
+      - wget
+      - yum-utils
   
   # Stop and disable firewalld
   - name: Stop and disable firewalld
@@ -32,15 +41,6 @@
       name: fail2ban
       state: started
       enabled: yes
-
-  # Install basic tools
-  - name: Install basic tools
-    package: name={{item}} state=present
-    with_items:
-      - epel-release
-      - net-tools
-      - wget
-      - yum-utils
 
   # Install a Minimal Desktop environment
   - name: Install minimal desktop
