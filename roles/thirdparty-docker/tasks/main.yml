@@ -14,6 +14,7 @@
     package: name={{item}} state=present
     with_items:
       - docker-ce-{{docker_version}}*
+      - docker-compose
 
 
   # # Configure http proxy for Docker if required
