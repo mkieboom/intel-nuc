@@ -16,11 +16,11 @@
   roles:
     - thirdparty-virtualbox
 
-## Install xrdp
-- name: Install xrdp
+## Install Synology Drive Client
+- name: Install Synology Drive Client
   hosts: all
   roles:
-    - thirdparty-xrdp
+    - thirdparty-synology-drive-client
 
 ## Install chrome
 - name: Install chrome

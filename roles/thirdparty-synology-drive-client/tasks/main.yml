@@ -1,0 +1,8 @@
+---
+
+  # Install Synology Drive Client
+  # NOTE: Synology doesn't support rpm anymore hence this is an old version
+  - name: Remote RPM install with yum
+    yum:
+      name: https://archive.synology.com/download/Tools/CloudStationDrive/4.2.8-4421/Fedora/Installer/x86_64/synology-cloud-station-drive-4.2.8-4421.x86_64.rpm
+      state: present
