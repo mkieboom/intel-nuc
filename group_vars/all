@@ -8,5 +8,7 @@ virtualbox_repo_url: http://download.virtualbox.org/virtualbox/rpm/rhel/virtualb
 virtualbox_version: 6.0
 
 # Vagrant
+# Using v2.2.4 due to bug in 2.2.5
+# https://github.com/MaxBab/vagrant-examples/issues/1
 vagrant_rpm_url: https://releases.hashicorp.com/vagrant/{{vagrant_version}}/vagrant_{{vagrant_version}}_x86_64.rpm
-vagrant_version: 2.2.5
+vagrant_version: 2.2.4
