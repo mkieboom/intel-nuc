@@ -17,6 +17,12 @@
       state: stopped
       enabled: no
 
+  - name: Create user and add to groups
+    user:
+      name: "martijn"
+      groups: "sudo martijn wheel docker"
+      shell: /bin/bash
+
   # Secure ssh
   - name: Import the sshkey for the new user
     authorized_key:
