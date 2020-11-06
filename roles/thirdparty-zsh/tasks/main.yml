@@ -1,0 +1,30 @@
+---
+  - name: Install zsh and git, curl as a dependency
+    package: name={{item}} state=present
+    with_items:
+      - git
+      - curl
+      - zsh
+
+  - name: Install Oh My zsh
+    shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+  - name: Install Oh My Zsh Plugins
+    shell: |
+      # fzf
+      git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+      ~/.fzf/install --all --key-bindings --update-rc --no-bash --no-fish
+
+      # zsh-syntax-highlighting
+      git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+      # zsh-autosuggestions
+      git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+
+      # Plugins
+      #plugins=(docker docker-compose kubectl helm vagrant zsh-syntax-highlighting zsh-autosuggestions)
+      sed -ie "s|^plugins=.*|plugins=(docker docker-compose kubectl helm vagrant zsh-syntax-highlighting zsh-autosuggestions)|g" ~/.fzf.zsh
+
+  - name: Set zsh as the default shell
+    shell: chsh -s $(which zsh)

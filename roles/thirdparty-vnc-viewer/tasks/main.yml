@@ -1,0 +1,16 @@
+---
+
+  # Install vnc-server for remote access
+  - name: Install xrdp
+    package: name=tigervnc-server state=present
+
+  # Configure vnc-server to run as a specific user
+  - name: Configure vnc-server to run as a specific user
+    replace:
+      path: /usr/lib/systemd/system/vncserver\@.service
+      regexp: '<USER>'
+      replace: 'martijn'
+
+  - name: Set the vnc-server password
+    shell: su -l -c 'printf "password\npassword\n\n" | vncpasswd' martijn
+

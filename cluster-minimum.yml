@@ -4,6 +4,12 @@
   roles:
     - common-prereq-software
 
+## Install zsh
+- name: Install Zsh
+  hosts: all
+  roles:
+    - thirdparty-zsh
+
 ## Install Docker
 - name: Install Docker
   hosts: all
@@ -15,6 +21,12 @@
   hosts: all
   roles:
     - thirdparty-virtualbox
+
+## Install vnc-server
+- name: Install vnc-server
+  hosts: all
+  roles:
+    - thirdparty-vnc-server
 
 ## Install Synology Drive Client
 - name: Install Synology Drive Client
