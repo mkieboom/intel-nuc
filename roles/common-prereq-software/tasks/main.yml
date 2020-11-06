@@ -9,6 +9,9 @@
       - net-tools
       - wget
       - yum-utils
+      - git
+      - curl
+      - zsh
   
   # Stop and disable firewalld
   - name: Stop and disable firewalld
@@ -20,8 +23,8 @@
   - name: Create user and add to groups
     user:
       name: "martijn"
-      groups: "sudo martijn wheel docker"
-      shell: /bin/bash
+      #groups: "sudo martijn wheel docker"
+      shell: /bin/zsh
 
   # Secure ssh
   - name: Import the sshkey for the new user
