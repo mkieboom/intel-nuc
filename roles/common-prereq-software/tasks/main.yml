@@ -57,7 +57,8 @@
   # Install a Minimal Desktop environment
   
   # ubuntu
-
+  - name: Install desktop
+    package: ubuntu-desktop
 
   # centos
   # - name: Install minimal desktop
