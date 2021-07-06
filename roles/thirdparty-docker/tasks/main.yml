@@ -11,11 +11,11 @@
   - name: Add Docker GPG key
     shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-- name: Add specified repository into sources list using specified filename
-  ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
-    state: present
-    filename: docker
+  - name: Add specified repository into sources list using specified filename
+    ansible.builtin.apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+      state: present
+      filename: docker
 
   # Install docker
   - name: Install Docker
