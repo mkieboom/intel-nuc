@@ -2,7 +2,7 @@
 
   # Install vnc-server for remote access
   - name: Install xrdp
-    package: name=tigervnc-server state=present
+    package: name=xrdp state=present
 
   # Configure vnc-server to run as a specific user
   - name: Configure vnc-server to run as a specific user

@@ -63,6 +63,10 @@
   # ubuntu
   - name: Install desktop
     package: name=ubuntu-desktop state=present
+    package: name={{item}} state=present
+    with_items:
+      - ubuntu-desktop-minimal
+    #  - lightdm
 
   # centos
   # - name: Install minimal desktop

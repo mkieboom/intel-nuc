@@ -1,4 +1,4 @@
-BOX_IMAGE = "centos/7"
+BOX_IMAGE = "ubuntu/focal64"
 NODE_NAME = "intelnuc"
 NODE_IP = "192.168.168.168"
 NODE_MEMORY = 4096
@@ -13,7 +13,7 @@ $script = <<EOF
 #sudo yum update -y
 
 # Install git
-sudo yum install -y git
+sudo apt install -y git
 
 # Git clone
 sudo git clone #{GIT_ANSIBLE_PROJECT}
