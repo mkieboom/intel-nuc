@@ -14,11 +14,11 @@
       - zsh
   
   # Stop and disable firewalld
-  - name: Stop and disable firewalld
-    systemd:
-      name: firewalld
-      state: stopped
-      enabled: no
+  # - name: Stop and disable firewalld
+  #   systemd:
+  #     name: firewalld
+  #     state: stopped
+  #     enabled: no
 
   - name: Create user and add to groups
     user:
