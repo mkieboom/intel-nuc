@@ -58,7 +58,7 @@
   
   # ubuntu
   - name: Install desktop
-    package: ubuntu-desktop
+    package: ubuntu-desktop state=present
 
   # centos
   # - name: Install minimal desktop
