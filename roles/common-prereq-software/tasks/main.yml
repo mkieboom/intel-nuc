@@ -27,7 +27,11 @@
       shell: /bin/zsh
 
   - name: Allow user to run various sudo commands
-    lineinfile: dest=/etc/sudoers.d/martijn line='martijn ALL=(ALL) NOPASSWD:/sbin/shutdown,/sbin/reboot,/sbin/halt,/usr/sbin/shutdown,/usr/sbin/reboot,/usr/sbin/halt' state=present
+    lineinfile:
+      path: /etc/sudoers.d/martijn
+      line: 'martijn ALL=(ALL) NOPASSWD:/sbin/shutdown,/sbin/reboot,/sbin/halt,/usr/sbin/shutdown,/usr/sbin/reboot,/usr/sbin/halt'
+      state: present
+      create: yes
 
   # Secure ssh
   - name: Import the sshkey for the new user
