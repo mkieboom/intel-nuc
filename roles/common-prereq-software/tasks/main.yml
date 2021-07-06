@@ -5,10 +5,10 @@
   - name: Install basic tools
     package: name={{item}} state=present
     with_items:
-      - epel-release
+    #  - epel-release
       - net-tools
-      - wget
-      - yum-utils
+    #  - wget
+    #  - yum-utils
       - git
       - curl
       - zsh
@@ -25,6 +25,9 @@
       name: "martijn"
       #groups: "sudo martijn wheel docker"
       shell: /bin/zsh
+
+  - name: Allow user to run various sudo commands
+    lineinfile: dest=/etc/sudoers.d/martijn line='martijn ALL=(ALL) NOPASSWD:/sbin/shutdown,/sbin/reboot,/sbin/halt,/usr/sbin/shutdown,/usr/sbin/reboot,/usr/sbin/halt' state=present
 
   # Secure ssh
   - name: Import the sshkey for the new user
@@ -45,34 +48,34 @@
   - name: Install fail2ban
     package: name=fail2ban state=present
 
-  - name: Start and disable fail2ban
+  - name: Start and enable fail2ban
     systemd:
       name: fail2ban
       state: started
       enabled: yes
 
   # Install a Minimal Desktop environment
-  - name: Install minimal desktop
-    yum:
-      name: "@X Window System"
-      state: present
+  
+  # ubuntu
 
-  - name: Install minimal desktop prerequisites
-    package: name={{item}} state=present
-    with_items:
-      - gnome-classic-session
-      - gnome-terminal
-      - nautilus-open-terminal
-      - control-center
-      - liberation-mono-fonts
 
-  - name: Desktop environment - Create a symbolic link
-    file:
-      src: /lib/systemd/system/graphical.target
-      dest: /etc/systemd/system/default.target
-      state: link
+  # centos
+  # - name: Install minimal desktop
+  #   yum:
+  #     name: "@X Window System"
+  #     state: present
 
-#  - name: install the 'GNOME Desktop' package group
-#    yum:
-#      name: "@^GNOME Desktop"
-#      state: present
+  # - name: Install minimal desktop prerequisites
+  #   package: name={{item}} state=present
+  #   with_items:
+  #     - gnome-classic-session
+  #     - gnome-terminal
+  #     - nautilus-open-terminal
+  #     - control-center
+  #     - liberation-mono-fonts
+
+  # - name: Desktop environment - Create a symbolic link
+  #   file:
+  #     src: /lib/systemd/system/graphical.target
+  #     dest: /etc/systemd/system/default.target
+  #     state: link
