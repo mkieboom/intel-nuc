@@ -4,11 +4,11 @@
     package: name={{item}} state=present
     with_items:
       - virtualbox
-      - virtualbox-ext-pack
+      # - virtualbox-ext-pack
 
-  - name: Run vboxconfig
-    shell: /sbin/vboxconfig
-    become: true
+  # - name: Run vboxconfig
+  #   shell: /sbin/vboxconfig
+  #   become: true
     
   - name: Make user 'root' part of the 'vboxusers' group
     user:
@@ -18,4 +18,4 @@
 
   # Install vagrant
   - name: Install vagrant
-    yum: name={{vagrant_rpm_url}} state=present
+    package: name=vagrant state=present
