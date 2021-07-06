@@ -11,16 +11,16 @@
     - thirdparty-zsh
 
 # ## Install Docker
-# - name: Install Docker
-#   hosts: all
-#   roles:
-#     - thirdparty-docker
+- name: Install Docker
+  hosts: all
+  roles:
+    - thirdparty-docker
 
 # ## Install Virtualbox
-# - name: Install Virtualbox
-#   hosts: all
-#   roles:
-#     - thirdparty-virtualbox
+- name: Install Virtualbox
+  hosts: all
+  roles:
+    - thirdparty-virtualbox
 
 # ## Install vnc-server
 # - name: Install vnc-server

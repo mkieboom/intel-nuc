@@ -3,36 +3,8 @@
   - name: Install virtualbox dependencies
     package: name={{item}} state=present
     with_items:
-      - gcc
-      - dkms
-      - make
-      - qt
-      - libgomp
-      - patch
-      - kernel-headers
-      - kernel-devel
-      - binutils
-      - glibc-headers
-      - glibc-devel
-      - fontforge
-      - kernel-devel-3.10.0-957.12.2.el7
-
-  # Install virtualbox
-  - name: Add virtualbox repo
-    yum_repository:
-      name: virtualbox
-      description: Oracle Virtualbox repo
-      file: virtualbox
-      baseurl: http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch
-      gpgkey: https://www.virtualbox.org/download/oracle_vbox.asc
-      gpgcheck: yes
-      repo_gpgcheck: no
-      enabled: yes
-
-  - name: Install Virtualbox
-    package: name={{item}} state=present
-    with_items:
-      - VirtualBox-{{virtualbox_version}}*
+      - virtualbox
+      - virtualbox-ext-pack
 
   - name: Run vboxconfig
     shell: /sbin/vboxconfig
