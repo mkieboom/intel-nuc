@@ -24,7 +24,7 @@
     user:
       name: "martijn"
       #groups: "sudo martijn wheel docker"
-      shell: /bin/zsh
+      #shell: /bin/zsh
 
   - name: Allow user to run various sudo commands
     lineinfile:

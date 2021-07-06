@@ -5,10 +5,10 @@
     - common-prereq-software
 
 ## Install zsh
-- name: Install Zsh
-  hosts: all
-  roles:
-    - thirdparty-zsh
+# - name: Install Zsh
+#   hosts: all
+#   roles:
+#     - thirdparty-zsh
 
 # ## Install Docker
 - name: Install Docker
