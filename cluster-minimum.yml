@@ -34,8 +34,8 @@
 #   roles:
 #     - thirdparty-synology-drive-client
 
-# ## Install chrome
-# - name: Install chrome
-#   hosts: all
-#   roles:
-#     - thirdparty-chrome
+## Install chrome
+- name: Install chrome
+  hosts: all
+  roles:
+    - thirdparty-chrome

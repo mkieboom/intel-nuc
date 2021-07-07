@@ -2,6 +2,6 @@
 
   # Install Chrome
   - name: Install Chrome
-    yum:
-      name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    package:
+      name: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
       state: present
