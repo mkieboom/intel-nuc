@@ -28,11 +28,11 @@
   roles:
     - thirdparty-xrdp
 
-# ## Install Synology Drive Client
-# - name: Install Synology Drive Client
-#   hosts: all
-#   roles:
-#     - thirdparty-synology-drive-client
+## Install Synology Drive Client
+- name: Install Synology Drive Client
+  hosts: all
+  roles:
+    - thirdparty-synology-drive-client
 
 ## Install chrome
 - name: Install chrome
