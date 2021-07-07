@@ -3,6 +3,6 @@
   # Install Synology Drive Client
   # NOTE: Synology doesn't support rpm anymore
   - name: Remote RPM install with yum
-    package:
-      name: https://global.download.synology.com/download/Utility/SynologyDriveClient/3.0.1-12667/Ubuntu/Installer/x86_64/synology-drive-client-12667.x86_64.deb
+    apt:
+      deb: https://global.download.synology.com/download/Utility/SynologyDriveClient/3.0.1-12667/Ubuntu/Installer/x86_64/synology-drive-client-12667.x86_64.deb
       state: present
