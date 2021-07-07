@@ -2,6 +2,11 @@
 
   # Install Chrome
   - name: Install Chrome
-    package:
-      name: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    apt:
+      deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
       state: present
+
+  # - name: Download Chrome
+  #   get_url:
+  #     url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  #     dest: /tmp/chrome.deb
