@@ -75,6 +75,19 @@
   - name: Enable autologin for user martijn
     lineinfile: dest=/etc/gdm3/custom.conf line='AutomaticLogin = martijn' state=present
 
+  # Launch vncserver on boot and login for user martijn
+  - name: Launch vncserver on boot and login for user martijn
+    blockinfile:
+      path: /home/martijn/.config/autostart/vncserver.desktop
+      block: |
+        [Desktop Entry]
+        Type=Application
+        Name=vncserver
+        Exec=vncserver -localhost no -geometry 1680x1050 -depth 32
+        Icon=<full path to icon>
+        Comment=Launch vncserver
+        X-GNOME-Autostart-enabled=true
+
   # centos
   # - name: Install minimal desktop
   #   yum:
