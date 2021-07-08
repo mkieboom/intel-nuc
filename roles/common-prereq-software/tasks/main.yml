@@ -75,6 +75,15 @@
   - name: Enable autologin for user martijn
     lineinfile: dest=/etc/gdm3/custom.conf line='AutomaticLogin = martijn' state=present
 
+  # Create the auto launch directory if it does not exist
+  - name: Create the auto launch directory if it does not exist
+    ansible.builtin.file:
+      path: /home/martijn/.config/autostart/
+      state: directory
+      owner: martijn
+      group: martijn
+      mode: '0755'
+
   # Launch vncserver on boot and login for user martijn
   - name: Launch vncserver on boot and login for user martijn
     blockinfile:
