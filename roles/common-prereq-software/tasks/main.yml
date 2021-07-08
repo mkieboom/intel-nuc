@@ -77,9 +77,9 @@
 
   # Create the auto launch directory if it does not exist
   - name: Create the auto launch directory if it does not exist
-    ansible.builtin.file:
-      path: /home/martijn/.config/autostart/
-      state: directory
+    file:
+      path: /home/martijn/.config/autostart/autostart/vncserver.desktop
+      state: touch
       owner: martijn
       group: martijn
       mode: '0755'
