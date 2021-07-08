@@ -3,7 +3,7 @@
   # Install vnc-server for remote access
   - name: Install vnc-server
     package: name={{item}} state=present
-    with:
+    with_items:
       - tigervnc-standalone-server
       - tigervnc-xorg-extension
       - tigervnc-viewer
