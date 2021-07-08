@@ -68,12 +68,6 @@
     with_items:
       - ubuntu-desktop-minimal
 
-  # # Autologin to the desktop on boot for user martijn
-  # - name: Enable autologin
-  #   lineinfile: dest=/etc/gdm3/custom.conf line='AutomaticLoginEnable = true' state=present
-  # - name: Enable autologin for user martijn
-  #   lineinfile: dest=/etc/gdm3/custom.conf line='AutomaticLogin = martijn' state=present
-
   - name: Autologin to the desktop on boot for user martijn
     replace:
       path: /etc/gdm3/custom.conf
