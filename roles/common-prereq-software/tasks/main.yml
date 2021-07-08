@@ -67,44 +67,56 @@
     package: name={{item}} state=present
     with_items:
       - ubuntu-desktop-minimal
-    #  - lightdm
 
-  # Autologin to the desktop on boot for user martijn
-  - name: Enable autologin
-    lineinfile: dest=/etc/gdm3/custom.conf line='AutomaticLoginEnable = true' state=present
-  - name: Enable autologin for user martijn
-    lineinfile: dest=/etc/gdm3/custom.conf line='AutomaticLogin = martijn' state=present
+  # # Autologin to the desktop on boot for user martijn
+  # - name: Enable autologin
+  #   lineinfile: dest=/etc/gdm3/custom.conf line='AutomaticLoginEnable = true' state=present
+  # - name: Enable autologin for user martijn
+  #   lineinfile: dest=/etc/gdm3/custom.conf line='AutomaticLogin = martijn' state=present
 
-  # Create the auto launch directory if it does not exist
-  - name: Create the auto launch directory if it does not exist
-    file:
-      path: /home/martijn/.config/autostart/
-      state: directory
-      owner: martijn
-      group: martijn
-      mode: '0755'
+  - name: Autologin to the desktop on boot for user martijn
+    replace:
+      path: /etc/gdm3/custom.conf
+      regexp: '#  AutomaticLoginEnable = true'
+      replace: 'AutomaticLoginEnable = true'
 
-  # Create the auto launch file if it does not exist
-  - name: Create the auto launch file if it does not exist
-    file:
-      path: /home/martijn/.config/autostart/vncserver.desktop
-      state: touch
-      owner: martijn
-      group: martijn
-      mode: '0755'
+  - name: Autologin to the desktop on boot for user martijn
+    replace:
+      path: /etc/gdm3/custom.conf
+      regexp: '#  AutomaticLogin = user1'
+      replace: 'AutomaticLogin = martijn'
 
-  # Launch vncserver on boot and login for user martijn
-  - name: Launch vncserver on boot and login for user martijn
-    blockinfile:
-      path: /home/martijn/.config/autostart/vncserver.desktop
-      block: |
-        [Desktop Entry]
-        Type=Application
-        Name=vncserver
-        Exec=vncserver -localhost no -geometry 1680x1050 -depth 32
-        Icon=<full path to icon>
-        Comment=Launch vncserver
-        X-GNOME-Autostart-enabled=true
+
+  # # Create the auto launch directory if it does not exist
+  # - name: Create the auto launch directory if it does not exist
+  #   file:
+  #     path: /home/martijn/.config/autostart/
+  #     state: directory
+  #     owner: martijn
+  #     group: martijn
+  #     mode: '0755'
+
+  # # Create the auto launch file if it does not exist
+  # - name: Create the auto launch file if it does not exist
+  #   file:
+  #     path: /home/martijn/.config/autostart/vncserver.desktop
+  #     state: touch
+  #     owner: martijn
+  #     group: martijn
+  #     mode: '0755'
+
+  # # Launch vncserver on boot and login for user martijn
+  # - name: Launch vncserver on boot and login for user martijn
+  #   blockinfile:
+  #     path: /home/martijn/.config/autostart/vncserver.desktop
+  #     block: |
+  #       [Desktop Entry]
+  #       Type=Application
+  #       Name=vncserver
+  #       Exec=vncserver -localhost no -geometry 1680x1050 -depth 32
+  #       Icon=<full path to icon>
+  #       Comment=Launch vncserver
+  #       X-GNOME-Autostart-enabled=true
 
   # centos
   # - name: Install minimal desktop
