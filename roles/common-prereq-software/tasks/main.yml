@@ -24,6 +24,7 @@
     user:
       name: "martijn"
       #groups: "sudo martijn wheel docker"
+      shell: /bin/bash
       #shell: /bin/zsh
 
   - name: Allow user to run various sudo commands
@@ -67,6 +68,12 @@
     with_items:
       - ubuntu-desktop-minimal
     #  - lightdm
+
+  # Autologin to the desktop on boot for user martijn
+  - name: Enable autologin
+    lineinfile: dest=/etc/gdm3/custom.conf line='AutomaticLoginEnable = true' state=present
+  - name: Enable autologin for user martijn
+    lineinfile: dest=/etc/gdm3/custom.conf line='AutomaticLogin = martijn' state=present
 
   # centos
   # - name: Install minimal desktop

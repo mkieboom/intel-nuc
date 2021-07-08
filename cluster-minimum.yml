@@ -22,11 +22,11 @@
   roles:
     - thirdparty-virtualbox
 
-## Install xrdp
-- name: Install xrdp
+## Install vnc-server
+- name: Install vnc-server
   hosts: all
   roles:
-    - thirdparty-xrdp
+    - thirdparty-vnc-server
 
 ## Install Synology Drive Client
 - name: Install Synology Drive Client
