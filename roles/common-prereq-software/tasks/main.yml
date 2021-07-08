@@ -88,6 +88,7 @@
   - name: Launch vncserver on boot and login for user martijn
     blockinfile:
       path: /home/martijn/.config/autostart/vncserver.desktop
+      create: yes
       block: |
         [Desktop Entry]
         Type=Application
