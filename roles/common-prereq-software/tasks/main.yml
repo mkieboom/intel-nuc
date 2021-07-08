@@ -78,8 +78,17 @@
   # Create the auto launch directory if it does not exist
   - name: Create the auto launch directory if it does not exist
     file:
+      path: /home/martijn/.config/autostart/autostart/
+      state: directory
+      owner: martijn
+      group: martijn
+      mode: '0755'
+
+  # Create the auto launch file if it does not exist
+  - name: Create the auto launch file if it does not exist
+    file:
       path: /home/martijn/.config/autostart/autostart/vncserver.desktop
-      state: touch
+      state: file
       owner: martijn
       group: martijn
       mode: '0755'
@@ -88,7 +97,6 @@
   - name: Launch vncserver on boot and login for user martijn
     blockinfile:
       path: /home/martijn/.config/autostart/vncserver.desktop
-      create: yes
       block: |
         [Desktop Entry]
         Type=Application
