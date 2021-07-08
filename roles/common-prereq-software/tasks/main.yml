@@ -78,7 +78,7 @@
   # Create the auto launch directory if it does not exist
   - name: Create the auto launch directory if it does not exist
     file:
-      path: /home/martijn/.config/autostart/autostart/
+      path: /home/martijn/.config/autostart/
       state: directory
       owner: martijn
       group: martijn
@@ -87,7 +87,7 @@
   # Create the auto launch file if it does not exist
   - name: Create the auto launch file if it does not exist
     file:
-      path: /home/martijn/.config/autostart/autostart/vncserver.desktop
+      path: /home/martijn/.config/autostart/vncserver.desktop
       state: touch
       owner: martijn
       group: martijn
