@@ -18,3 +18,34 @@
   - name: Set the vnc-server password
     shell: su -l -c 'printf "password\npassword\n\n" | vncpasswd' martijn
 
+
+  # Create the auto launch file if it does not exist
+  - name: Launch vncserver on boot for user martijn
+    file:
+      path: /home/martijn/launch-vncserver.sh
+      state: touch
+      owner: martijn
+      group: martijn
+      mode: '0755'
+
+  # Launch vncserver on boot and login for user martijn
+  - name: Launch vncserver on boot for user martijn
+    blockinfile:
+      path: /home/martijn/launch-vncserver.sh
+      block: |
+        #! /bin/bash
+
+        # Kill existing vncserver instance :1
+        vncserver -kill :1
+
+        # Remove vncserver pid file
+        rm -rf /home/martijn/.vnc/intelnuc:1.pid
+
+        # launch vncserver
+        vncserver -localhost no -geometry 1024x768 -depth 32 :1
+
+  - name: Launch 
+    cron:
+      name: "Launch vnc-server on boot"
+      special_time: reboot
+      job: "/home/martijn/launch-vncserver.sh"
