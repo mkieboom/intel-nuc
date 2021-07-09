@@ -48,5 +48,5 @@
     cron:
       name: "Launch vnc-server on boot"
       special_time: reboot
-      user: martijn
+      # user: martijn
       job: "/home/martijn/launch-vncserver.sh"
