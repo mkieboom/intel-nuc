@@ -49,4 +49,4 @@
       name: "Launch vnc-server on boot"
       special_time: reboot
       # user: martijn
-      job: "/home/martijn/launch-vncserver.sh"
+      job: "/home/martijn/launch-vncserver.sh > /tmp/launch-vncserver.log 2>&1"
