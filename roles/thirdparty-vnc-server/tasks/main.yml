@@ -44,9 +44,9 @@
         # launch vncserver
         vncserver -localhost no -geometry 1024x768 -depth 32 :1
 
-  - name: Launch 
-    cron:
-      name: "Launch vnc-server on boot"
-      special_time: reboot
-      # user: martijn
-      job: "/home/martijn/launch-vncserver.sh > /tmp/launch-vncserver.log 2>&1"
+  # - name: Launch 
+  #   cron:
+  #     name: "Launch vnc-server on boot"
+  #     special_time: reboot
+  #     # user: martijn
+  #     job: "/home/martijn/launch-vncserver.sh > /tmp/launch-vncserver.log 2>&1"
