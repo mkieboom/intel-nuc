@@ -2,7 +2,7 @@
 
 #### Pre-requisites
 ```
-yum install -y git ansible
+apt install -y git ansible
 ```
 
 ##### Clone the project
