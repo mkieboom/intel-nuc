@@ -66,19 +66,21 @@
     package: name=ubuntu-desktop state=present
     package: name={{item}} state=present
     with_items:
-      - ubuntu-desktop-minimal
+      - xfce4
+      - xfce4-goodies
+#      - ubuntu-desktop-minimal
 
-  - name: Autologin to the desktop on boot for user martijn
-    replace:
-      path: /etc/gdm3/custom.conf
-      regexp: '#  AutomaticLoginEnable = true'
-      replace: 'AutomaticLoginEnable = true'
+  # - name: Autologin to the desktop on boot for user martijn
+  #   replace:
+  #     path: /etc/gdm3/custom.conf
+  #     regexp: '#  AutomaticLoginEnable = true'
+  #     replace: 'AutomaticLoginEnable = true'
 
-  - name: Autologin to the desktop on boot for user martijn
-    replace:
-      path: /etc/gdm3/custom.conf
-      regexp: '#  AutomaticLogin = user1'
-      replace: 'AutomaticLogin = martijn'
+  # - name: Autologin to the desktop on boot for user martijn
+  #   replace:
+  #     path: /etc/gdm3/custom.conf
+  #     regexp: '#  AutomaticLogin = user1'
+  #     replace: 'AutomaticLogin = martijn'
 
 
   # # Create the auto launch directory if it does not exist
