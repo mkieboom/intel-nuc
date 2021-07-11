@@ -110,8 +110,8 @@
     package: name={{item}} state=present
     with_items:
       - xfce4
-      - xfce4-goodies
-#      - ubuntu-desktop-minimal
+  #    - xfce4-goodies
+  #    - ubuntu-desktop-minimal
 
   # - name: Autologin to the desktop on boot for user martijn
   #   replace:
