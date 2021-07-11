@@ -3,7 +3,7 @@
 
   # Set timezone to Europe/Amsterdam
   - name: Set timezone to Europe/Amsterdam
-    community.general.timezone:
+    timezone:
       name: Europe/Amsterdam
 
   # Install basic tools
