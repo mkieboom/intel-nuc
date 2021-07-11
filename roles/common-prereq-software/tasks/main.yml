@@ -108,10 +108,10 @@
   # ubuntu
   - name: Install desktop
     #package: name=ubuntu-desktop state=present
-    package: name={{item}} state=present
-    install_recommends: no
-    with_items:
-      - xfce4
+    apt: name=xfce4 state=present
+      install_recommends: no
+#    with_items:
+#      - xfce4
 #      - xfce4-goodies
 #      - ubuntu-desktop-minimal
 
