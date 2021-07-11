@@ -18,6 +18,7 @@
   - name: Create the custom network config file
     blockinfile:
       path: /tmp/netplan.yaml
+      create: yes
       block: |
         network:
           version: 2
