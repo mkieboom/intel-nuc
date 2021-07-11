@@ -63,7 +63,7 @@
   
   # ubuntu
   - name: Install desktop
-    package: name=ubuntu-desktop state=present
+    #package: name=ubuntu-desktop state=present
     package: name={{item}} state=present
     with_items:
       - xfce4
