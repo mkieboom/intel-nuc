@@ -1,6 +1,11 @@
 ---
 # Install Intel NUC basic software packages
 
+  # Set timezone to Europe/Amsterdam
+  - name: Set timezone to Europe/Amsterdam
+    community.general.timezone:
+      name: Europe/Amsterdam
+
   # Install basic tools
   - name: Install basic tools
     package: name={{item}} state=present
