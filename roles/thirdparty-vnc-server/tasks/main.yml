@@ -28,7 +28,7 @@
   # Create the vncserver xstartup file
   - name: Create the vncserver xstartup file
     blockinfile:
-      path: /home/martijn/launch-vncserver.sh
+      path: /home/martijn/.vnc/xstartup
       block: |
         #! /bin/bash
 
