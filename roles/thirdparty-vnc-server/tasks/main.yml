@@ -1,12 +1,81 @@
 ---
 
+  # Doc: https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04-quickstart
+
   # Install vnc-server for remote access
   - name: Install vnc-server
     package: name={{item}} state=present
     with_items:
-      - tigervnc-standalone-server
-      - tigervnc-xorg-extension
-      - tigervnc-viewer
+      - tightvncserver
+#      - tigervnc-standalone-server
+#      - tigervnc-xorg-extension
+#      - tigervnc-viewer
+
+
+  # Set the vnc-server password for user martijn
+  - name: Set the vnc-server password
+    shell: su -l -c 'printf "password\npassword\n\n" | vncpasswd' martijn
+
+  # Create the vncserver xstartup file
+  - name: Create the vncserver xstartup file
+    file:
+      path: /home/martijn/.vnc/xstartup
+      state: touch
+      owner: martijn
+      group: martijn
+      mode: '0755'
+
+  # Create the vncserver xstartup file
+  - name: Create the vncserver xstartup file
+    blockinfile:
+      path: /home/martijn/launch-vncserver.sh
+      block: |
+        #! /bin/bash
+
+        xrdb $HOME/.Xresources
+        startxfce4 &
+
+
+  # Create the vncserver service file
+  - name: Create the vncserver service file
+    file:
+      path: /etc/systemd/system/vncserver@.service
+      state: touch
+      owner: root
+      group: root
+      mode: '0755'
+
+  # Create the vncserver service file
+  - name: Create the vncserver service file
+    blockinfile:
+      path: /etc/systemd/system/vncserver@.service
+      block: |
+        [Unit]
+        Description=Start TightVNC server at startup
+        After=syslog.target network.target
+
+        [Service]
+        Type=forking
+        User=martijn
+        Group=martijn
+        WorkingDirectory=/home/martijn
+
+        PIDFile=/home/martijn/.vnc/%H:%i.pid
+        ExecStartPre=-/usr/bin/vncserver -kill :%i > /dev/null 2>&1
+        ExecStart=/usr/bin/vncserver -depth 24 -geometry 1280x800 -localhost :%i
+        ExecStop=/usr/bin/vncserver -kill :%i
+
+        [Install]
+        WantedBy=multi-user.target
+
+
+  - name: Start and enable vncserver
+    systemd:
+      name: vncserver@1.service
+      daemon_reload: yes
+      state: started
+      enabled: yes
+
 
   # # Configure vnc-server to run as a specific user
   # - name: Configure vnc-server to run as a specific user
@@ -15,34 +84,31 @@
   #     regexp: '<USER>'
   #     replace: 'martijn'
 
-  - name: Set the vnc-server password
-    shell: su -l -c 'printf "password\npassword\n\n" | vncpasswd' martijn
-
 
   # Create the auto launch file if it does not exist
-  - name: Launch vncserver on boot for user martijn
-    file:
-      path: /home/martijn/launch-vncserver.sh
-      state: touch
-      owner: martijn
-      group: martijn
-      mode: '0755'
+  # - name: Launch vncserver on boot for user martijn
+  #   file:
+  #     path: /home/martijn/launch-vncserver.sh
+  #     state: touch
+  #     owner: martijn
+  #     group: martijn
+  #     mode: '0755'
 
   # Launch vncserver on boot and login for user martijn
-  - name: Launch vncserver on boot for user martijn
-    blockinfile:
-      path: /home/martijn/launch-vncserver.sh
-      block: |
-        #! /bin/bash
+  # - name: Launch vncserver on boot for user martijn
+  #   blockinfile:
+  #     path: /home/martijn/launch-vncserver.sh
+  #     block: |
+  #       #! /bin/bash
 
-        # Kill existing vncserver instance :1
-        vncserver -kill :1
+  #       # Kill existing vncserver instance :1
+  #       vncserver -kill :1
 
-        # Remove vncserver pid file
-        rm -rf /home/martijn/.vnc/intelnuc:1.pid
+  #       # Remove vncserver pid file
+  #       rm -rf /home/martijn/.vnc/intelnuc:1.pid
 
-        # launch vncserver
-        vncserver -localhost no -geometry 1024x768 -depth 32 :1
+  #       # launch vncserver
+  #       vncserver -localhost no -geometry 1024x768 -depth 32 :1
 
   # - name: Launch 
   #   cron:
