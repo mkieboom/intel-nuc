@@ -108,7 +108,9 @@
   # ubuntu
   - name: Install desktop
     #package: name=ubuntu-desktop state=present
-    apt: name=xfce4 state=present
+    apt:
+      name: xfce4
+      state: present
       install_recommends: no
 #    with_items:
 #      - xfce4
