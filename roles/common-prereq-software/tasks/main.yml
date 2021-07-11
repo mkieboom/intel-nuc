@@ -43,6 +43,19 @@
       backup: yes
 
 
+  # Stop and disable hibernation and sleep mode
+  - name: Stop and disable hibernation and sleep mode
+    systemd:
+      name: {{item}}
+      state: stopped
+      enabled: no
+      masked: yes
+    with_items:
+      - sleep.target
+      - suspend.target
+      - hibernate.target
+      - hybrid-sleep.target
+
   
   # Stop and disable firewalld
   # - name: Stop and disable firewalld
