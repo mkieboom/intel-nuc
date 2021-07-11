@@ -46,7 +46,7 @@
   # Stop and disable hibernation and sleep mode
   - name: Stop and disable hibernation and sleep mode
     systemd:
-      name: {{item}}
+      name: '{{item}}'
       state: stopped
       enabled: no
       masked: yes
