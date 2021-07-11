@@ -109,7 +109,7 @@
   - name: Install desktop
     #package: name=ubuntu-desktop state=present
     apt:
-      name: {{item}}
+      name: '{{item}}'
       state: present
     with_items:
       - xfce4
