@@ -72,6 +72,7 @@
   - name: Create user and add to groups
     user:
       name: "martijn"
+      uid: 1026
       #groups: "sudo martijn wheel docker"
       shell: /bin/bash
       #shell: /bin/zsh
