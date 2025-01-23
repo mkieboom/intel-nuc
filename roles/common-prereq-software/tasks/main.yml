@@ -74,7 +74,7 @@
     user:
       name: "martijn"
       uid: 1026
-      password: "password"
+      password: "$6$kaodVLj0jHrmVgVi$/qZclcWwIgojSOy1efi.5P5JB1nvePcrfyXpnf5sj/1IfqLVe4Tv4sEGYr.sC8HzgLg.Vnrdg3pCrzjXScoVM/"
       #groups: "sudo martijn wheel docker"
       shell: /bin/bash
       #shell: /bin/zsh
