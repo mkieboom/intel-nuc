@@ -17,5 +17,5 @@
       append: yes
 
   # Install vagrant
-  - name: Install vagrant
-    package: name=vagrant state=present
+  #- name: Install vagrant
+  #  package: name=vagrant state=present
