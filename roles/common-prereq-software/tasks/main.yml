@@ -19,6 +19,7 @@
       - zsh
       - ssh
       - vim
+      - nfs-common
 
 
   # Create the custom network config file
