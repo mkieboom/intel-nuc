@@ -17,6 +17,7 @@
       - git
       - curl
       - zsh
+      - ssh
 
 
   # Create the custom network config file
@@ -73,6 +74,7 @@
     user:
       name: "martijn"
       uid: 1026
+      password: "password"
       #groups: "sudo martijn wheel docker"
       shell: /bin/bash
       #shell: /bin/zsh
@@ -97,8 +99,13 @@
   - name: Disable SSH login for root
     lineinfile: dest=/etc/ssh/sshd_config line='PermitRootLogin no' state=present
 
-  - name: Restarting the SSH service
-    service: name=sshd state=restarted
+  # Launch ssh service for remote access
+  - name: Start the ssh service
+    systemd:
+      name: ssh
+      state: started
+      enabled: yes
+      daemon_reload: yes
 
   - name: Install fail2ban
     package: name=fail2ban state=present
@@ -119,11 +126,11 @@
   #    - xfce4-goodies
   #    - ubuntu-desktop-minimal
 
-  # - name: Autologin to the desktop on boot for user martijn
-  #   replace:
-  #     path: /etc/gdm3/custom.conf
-  #     regexp: '#  AutomaticLoginEnable = true'
-  #     replace: 'AutomaticLoginEnable = true'
+  - name: Autologin to the desktop on boot for user martijn
+    replace:
+      path: /etc/gdm3/custom.conf
+      regexp: '#  AutomaticLoginEnable = true'
+      replace: 'AutomaticLoginEnable = true'
 
   # - name: Autologin to the desktop on boot for user martijn
   #   replace:
