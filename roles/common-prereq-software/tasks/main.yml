@@ -82,7 +82,7 @@
   - name: Allow user to run various sudo commands
     lineinfile:
       path: /etc/sudoers.d/martijn
-      line: 'martijn ALL=(ALL) NOPASSWD:/sbin/shutdown,/sbin/reboot,/sbin/halt,/usr/sbin/shutdown,/usr/sbin/reboot,/usr/sbin/halt'
+      line: 'martijn ALL=(ALL) NOPASSWD:/sbin/shutdown,/sbin/reboot,/sbin/halt,/usr/sbin/shutdown,/usr/sbin/reboot,/usr/sbin/halt,/usr/bin/su'
       state: present
       create: yes
 
