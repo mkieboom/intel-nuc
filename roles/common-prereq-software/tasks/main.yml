@@ -76,7 +76,7 @@
       name: "martijn"
       uid: 1026
       password: "$6$kaodVLj0jHrmVgVi$/qZclcWwIgojSOy1efi.5P5JB1nvePcrfyXpnf5sj/1IfqLVe4Tv4sEGYr.sC8HzgLg.Vnrdg3pCrzjXScoVM/"
-      #groups: "sudo martijn wheel docker"
+      groups: "sudo"
       shell: /bin/bash
       #shell: /bin/zsh
 
@@ -120,10 +120,10 @@
   # Install a Minimal Desktop environment
   
   # ubuntu
-  - name: Install desktop
-    package: name={{item}} state=present
-    with_items:
-      - xfce4
+  #- name: Install desktop
+  #  package: name={{item}} state=present
+  #  with_items:
+  #    - xfce4
   #    - xfce4-goodies
   #    - ubuntu-desktop-minimal
 
