@@ -10,16 +10,14 @@
   - name: Install basic tools
     package: name={{item}} state=present
     with_items:
-    #  - epel-release
       - net-tools
-    #  - wget
-    #  - yum-utils
       - git
       - curl
-      - zsh
       - ssh
       - vim
       - nfs-common
+      - inetutils-ping
+      - dns-utils
 
 
   # Create the custom network config file
